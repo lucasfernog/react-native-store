@@ -21,7 +21,7 @@ db_store
          |---totalrows (variable)
          |---autoinc (variable)
          |---rows (array)
-                |--- _id (number)
+                |--- id (number)
                 |--- ....
 
 ```
