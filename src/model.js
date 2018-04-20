@@ -48,17 +48,15 @@ class Model {
     await this.initModel();
     var autoinc = this.model.autoinc++;
     if (this.model.rows[autoinc]) {
-      return Util.error("ReactNativeStore error: Storage already contains _id '" + autoinc + "'");
+      return Util.error("ReactNativeStore error: Storage already contains id '" + autoinc + "'");
     }
-    if (data._id) {
-      return Util.error("ReactNativeStore error: Don't need _id with add method");
-    }
-    data._id = autoinc;
+    if (!data.id)
+      data.id = autoinc;
     this.model.rows[autoinc] = data;
     this.model.totalrows++;
     this.database[this.modelName] = this.model;
     await AsyncStorage.setItem(this.dbName, JSON.stringify(this.database));
-    return this.model.rows[data._id];
+    return this.model.rows[data.id];
   }
 
   // multi add
@@ -68,12 +66,12 @@ class Model {
       var value = data[key];
       var autoinc = this.model.autoinc++;
       if (this.model.rows[autoinc]) {
-        return Util.error("ReactNativeStore error: Storage already contains _id '" + autoinc + "'");
+        return Util.error("ReactNativeStore error: Storage already contains id '" + autoinc + "'");
       }
-      if (value._id) {
-        return Util.error("ReactNativeStore error: Don't need _id with add method");
+      if (value.id) {
+        return Util.error("ReactNativeStore error: Don't need id with add method");
       }
-      value._id = autoinc;
+      value.id = autoinc;
       this.model.rows[autoinc] = value;
       this.model.totalrows++;
     }
@@ -86,14 +84,14 @@ class Model {
   async update(data, filter) {
     await this.initModel();
     filter = filter || {};
-    if (data._id)
-      delete data._id;
+    if (data.id)
+      delete data.id;
     var results = [];
     var rows = this.model["rows"];
     var filterResult = this.modelFilter.apply(rows, filter)
     for (var row in rows) {
       for (var element in filterResult) {
-        if (rows[row]['_id'] === filterResult[element]['_id']) {
+        if (rows[row]['id'] === filterResult[element]['id']) {
           for (var i in data) {
             rows[row][i] = data[i];
           }
@@ -110,7 +108,7 @@ class Model {
   async updateById(data, id) {
     var result = await this.update(data, {
       where: {
-        _id: id
+        id: id
       }
     });
     return result ? result[0] : null;
@@ -126,7 +124,7 @@ class Model {
     var filterResult = this.modelFilter.apply(rows, filter)
     for (var row in rows) {
       for (var element in filterResult) {
-        if (rows[row]['_id'] === filterResult[element]['_id'])
+        if (rows[row]['id'] === filterResult[element]['id'])
           rowsToDelete.push(row);
       }
     }
@@ -145,7 +143,7 @@ class Model {
   async removeById(id) {
     var result = await this.remove({
       where: {
-        _id: id
+        id: id
       }
     });
     return result ? result[0] : null;
@@ -165,7 +163,7 @@ class Model {
   async findById(id) {
     var result = await this.find({
       where: {
-        _id: id
+        id: id
       }
     });
     return result ? result[0] : null;

@@ -148,14 +148,14 @@ class Filter {
       if (fields[fieldKeys[key]] === true)
         strict = true;
     }
-    //NOTE: This is only for react-native-storage, which needs a _id key
+    //NOTE: This is only for react-native-storage, which needs a id key
     //to function correctly. If we are on strict mode, we must add in the
-    //_id key, if we are not, we much make sure that there is no false
+    //id key, if we are not, we much make sure that there is no false
     //value for it
     if (strict)
-      fields._id = true;
+      fields.id = true;
     else
-      delete fields._id;
+      delete fields.id;
     for (var key in elementKeys) {
       //Applying the above described behavior. Add the property if
       //we are being strict and the filter contains the key, or if

@@ -34,10 +34,10 @@ describe('model Tests', function () {
       foo: 'bar'
     }).then(resp => {
       expect(resp).toEqual({
-        _id: 1,
+        id: 1,
         foo: 'bar'
       });
-      let dbJson = '{"modelName":{"totalrows":1,"autoinc":2,"rows":{"1":{"foo":"bar","_id":1}}}}';
+      let dbJson = '{"modelName":{"totalrows":1,"autoinc":2,"rows":{"1":{"foo":"bar","id":1}}}}';
       expect(astore.setItem).toBeCalledWith('dbName', dbJson);
     });
   });
@@ -85,12 +85,12 @@ describe('model Tests', function () {
       }
     });
     let expected = [{
-      _id: 2,
+      id: 2,
       foo: 0,
       bar: 1,
       foobar: 'bar'
     }, {
-      _id: 4,
+      id: 4,
       foo: 1,
       bar: 1,
       foobar: 'bar'
@@ -105,25 +105,25 @@ describe('model Tests', function () {
             foo: 0,
             bar: 0,
             foobar: 'foobar',
-            _id: 1
+            id: 1
           },
           2: {
             foo: 0,
             bar: 1,
             foobar: 'bar',
-            _id: 2
+            id: 2
           },
           3: {
             foo: 1,
             bar: 0,
             foobar: 'foo',
-            _id: 3
+            id: 3
           },
           4: {
             foo: 1,
             bar: 1,
             foobar: 'bar',
-            _id: 4
+            id: 4
           }
         }
       }
@@ -154,7 +154,7 @@ describe('model Tests', function () {
       foobar: 'barfoo'
     }, 2);
     let expected = {
-      _id: 2,
+      id: 2,
       foo: 0,
       bar: 1,
       foobar: 'barfoo'
@@ -196,13 +196,13 @@ describe('model Tests', function () {
             foo: 0,
             bar: 0,
             foobar: 'foobar',
-            _id: 1
+            id: 1
           },
           2: {
             foo: 0,
             bar: 1,
             foobar: 'foobar',
-            _id: 2
+            id: 2
           }
         }
       }
@@ -240,19 +240,19 @@ describe('model Tests', function () {
             foo: 0,
             bar: 1,
             foobar: 'foobar',
-            _id: 2
+            id: 2
           },
           3: {
             foo: 1,
             bar: 0,
             foobar: 'foo',
-            _id: 3
+            id: 3
           },
           4: {
             foo: 1,
             bar: 1,
             foobar: 'foobar',
-            _id: 4
+            id: 4
           }
         }
       }

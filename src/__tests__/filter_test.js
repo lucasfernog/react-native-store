@@ -3,7 +3,7 @@ jest.dontMock('../filter.js');
 
 const testDataSet = {
   1: {
-    _id: 1,
+    id: 1,
     name: 'j',
     price: 3,
     location: {
@@ -15,7 +15,7 @@ const testDataSet = {
     }
   },
   2: {
-    _id: 2,
+    id: 2,
     name: 'a',
     price: 4,
     location: {
@@ -27,7 +27,7 @@ const testDataSet = {
     }
   },
   3: {
-    _id: 3,
+    id: 3,
     name: 'v',
     price: 1,
     location: {
@@ -39,7 +39,7 @@ const testDataSet = {
     }
   },
   4: {
-    _id: 4,
+    id: 4,
     name: 'a',
     price: 2,
     location: {
@@ -51,7 +51,7 @@ const testDataSet = {
     }
   },
   5: {
-    _id: 5,
+    id: 5,
     name: 's',
     price: 1,
     location: {
@@ -63,7 +63,7 @@ const testDataSet = {
     }
   },
   6: {
-    _id: 6,
+    id: 6,
     name: 'c',
     price: 1,
     location: {
@@ -75,7 +75,7 @@ const testDataSet = {
     }
   },
   7: {
-    _id: 7,
+    id: 7,
     name: 'r',
     price: 7,
     location: {
@@ -87,7 +87,7 @@ const testDataSet = {
     }
   },
   8: {
-    _id: 8,
+    id: 8,
     name: 'i',
     price: 9,
     location: {
@@ -99,7 +99,7 @@ const testDataSet = {
     }
   },
   9: {
-    _id: 9,
+    id: 9,
     name: 'p',
     price: 4,
     location: {
@@ -111,7 +111,7 @@ const testDataSet = {
     }
   },
   10: {
-    _id: 10,
+    id: 10,
     name: 't',
     price: 999,
     location: {
@@ -160,7 +160,7 @@ describe('filter Tests', function () {
     let results = Filter.apply(testDataSet, filter);
     expect(results.length).toEqual(4);
     let expected = [{
-      _id: 5,
+      id: 5,
       price: 1,
       location: {
         name: 'EU',
@@ -170,7 +170,7 @@ describe('filter Tests', function () {
         }
       }
     }, {
-      _id: 6,
+      id: 6,
       price: 1,
       location: {
         name: 'EU',
@@ -180,7 +180,7 @@ describe('filter Tests', function () {
         }
       }
     }, {
-      _id: 9,
+      id: 9,
       price: 4,
       location: {
         name: 'InterGalatic Space',
@@ -190,7 +190,7 @@ describe('filter Tests', function () {
         }
       }
     }, {
-      _id: 8,
+      id: 8,
       price: 9,
       location: {
         name: 'Outer Space',
@@ -206,12 +206,12 @@ describe('filter Tests', function () {
   it('should filter using findById', function () {
     let findById = {
       where: {
-        _id: 3
+        id: 3
       }
     };
     let results = Filter.apply(testDataSet, findById);
     let expected = [{
-      _id: 3,
+      id: 3,
       name: 'v',
       price: 1,
       location: {
@@ -235,7 +235,7 @@ describe('filter Tests', function () {
     };
     let results = Filter.apply(testDataSet, lexiFind);
     let expected = [{
-      _id: 2,
+      id: 2,
       name: 'a',
       price: 4,
       location: {
@@ -246,7 +246,7 @@ describe('filter Tests', function () {
         }
       }
     }, {
-      _id: 4,
+      id: 4,
       name: 'a',
       price: 2,
       location: {
@@ -257,7 +257,7 @@ describe('filter Tests', function () {
         }
       }
     }, {
-      _id: 6,
+      id: 6,
       name: 'c',
       price: 1,
       location: {
